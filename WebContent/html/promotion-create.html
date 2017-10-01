@@ -1,0 +1,605 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="keyword" content="">
+<!-- <link rel="shortcut icon" href="statics/img/favicon.png"> -->
+
+
+<!-- Bootstrap core CSS -->
+<link href="statics/css/bootstrap.min.3.css" rel="stylesheet">
+<link href="statics/css/bootstrap-reset.css" rel="stylesheet">
+<!--external css-->
+<!--<link href="/assets/font-awesomestatics/css/font-awesome.css" rel="stylesheet" />-->
+<link href="statics/assets/font-customer/style.css" rel="stylesheet" />
+
+<link href="statics/css/toastr.css" rel="stylesheet"/>
+
+<!-- Custom styles for this template -->
+<link href="statics/css/style.css" rel="stylesheet">
+<link href="statics/css/style-responsive.css" rel="stylesheet" />
+
+
+
+
+
+
+    
+    <title>优惠促销</title>
+
+        <link rel="stylesheet" type="text/css" href="statics/assets/bootstrap-datepicker/css/datepicker.css" />
+        <link rel="stylesheet" type="text/css" href="statics/assets/bootstrap-daterangepicker/daterangepicker.css" />
+        <link rel="stylesheet" type="text/css" href="statics/assets/bootstrap-timepicker/compiled/timepicker.css" />
+        <link rel="stylesheet" type="text/css" href="statics/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+        <link rel="stylesheet" type="text/css" href="statics/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+        <link rel="stylesheet" href="statics/chosen/docsupport/style.css">
+        <link rel="stylesheet" href="statics/chosen/docsupport/prism.css">
+        <link rel="stylesheet" href="statics/chosen/chosen.css">
+        <script type='text/javascript' src='statics/js/spin.min.js'></script>
+        <style>
+            #mask{
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background: rgba(51,51,51,0.6);
+                top: 0;
+                right: 0;
+                -webkit-user-select: none;
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+                z-index: 999;
+                display: none;
+            }
+            #global_mask{
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,.6);
+                z-index: 9999;
+                top: 0;
+                right: 0;
+                -webkit-user-select: none;
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+                display: none;
+            }
+            #global_loading {
+                width: 24px;
+                height: 24px;
+                position:absolute;
+            }
+            .has-switch {
+                border-radius: 30px;
+                -webkit-border-radius: 30px;
+                display: inline-block;
+                cursor: pointer;
+                line-height: 1.231;
+                overflow: hidden;
+                position: relative;
+                text-align: left;
+                width: 80px;
+                -webkit-mask: url('statics/img/mask.png') 0 0 no-repeat;
+                mask: url('statics/img/mask.png') 0 0 no-repeat;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+            }
+            .has-switch.deactivate {
+                opacity: 0.5;
+                filter: alpha(opacity=50);
+                cursor: default !important;
+            }
+            .has-switch.deactivate label,
+            .has-switch.deactivate span {
+                cursor: default !important;
+            }
+            .has-switch > div {
+                width: 162%;
+                position: relative;
+                top: 0;
+            }
+            .has-switch > div.switch-animate {
+                -webkit-transition: left 0.25s ease-out;
+                -moz-transition: left 0.25s ease-out;
+                -o-transition: left 0.25s ease-out;
+                transition: left 0.25s ease-out;
+                -webkit-backface-visibility: hidden;
+            }
+            .has-switch > div.switch-off {
+                left: -63%;
+            }
+            .has-switch > div.switch-off label {
+                background-color: #7f8c9a;
+                border-color: #bdc3c7;
+                -webkit-box-shadow: -1px 0 0 rgba(255, 255, 255, 0.5);
+                -moz-box-shadow: -1px 0 0 rgba(255, 255, 255, 0.5);
+                box-shadow: -1px 0 0 rgba(255, 255, 255, 0.5);
+            }
+            .has-switch > div.switch-on {
+                left: 0%;
+            }
+            .has-switch > div.switch-on label {
+                background-color: #41cac0;
+            }
+            .has-switch input[type=checkbox] {
+                display: none;
+            }
+            .has-switch span {
+                cursor: pointer;
+                font-size: 14.994px;
+                font-weight: 700;
+                float: left;
+                height: 29px;
+                line-height: 19px;
+                margin: 0;
+                padding-bottom: 6px;
+                padding-top: 5px;
+                position: relative;
+                text-align: center;
+                width: 50%;
+                z-index: 1;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                -webkit-transition: 0.25s ease-out;
+                -moz-transition: 0.25s ease-out;
+                -o-transition: 0.25s ease-out;
+                transition: 0.25s ease-out;
+                -webkit-backface-visibility: hidden;
+            }
+            .has-switch span.switch-left {
+                border-radius: 30px 0 0 30px;
+                background-color: #2A3542;
+                color: #41cac0;
+                border-left: 1px solid transparent;
+            }
+            .has-switch span.switch-right {
+                border-radius: 0 30px 30px 0;
+                background-color: #bdc3c7;
+                color: #ffffff;
+                text-indent: 7px;
+            }
+            .has-switch span.switch-right [class*="fui-"] {
+                text-indent: 0;
+            }
+            .has-switch label {
+                border: 4px solid #2A3542;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                float: left;
+                height: 29px;
+                margin: 0 -21px 0 -14px;
+                padding: 0;
+                position: relative;
+                vertical-align: middle;
+                width: 29px;
+                z-index: 100;
+                -webkit-transition: 0.25s ease-out;
+                -moz-transition: 0.25s ease-out;
+                -o-transition: 0.25s ease-out;
+                transition: 0.25s ease-out;
+                -webkit-backface-visibility: hidden;
+            }
+            .switch-square {
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -webkit-mask: url('statics/img/mask.png') 0 0 no-repeat;
+                mask: url('statics/img/mask.png') 0 0 no-repeat;
+            }
+            .switch-square > div.switch-off label {
+                border-color: #7f8c9a;
+                border-radius: 6px 0 0 6px;
+            }
+            .switch-square span.switch-left {
+                border-radius: 6px 0 0 6px;
+            }
+            .switch-square span.switch-left [class*="fui-"] {
+                text-indent: -10px;
+            }
+            .switch-square span.switch-right {
+                border-radius: 0 6px 6px 0;
+            }
+            .switch-square span.switch-right [class*="fui-"] {
+                text-indent: 5px;
+            }
+            .switch-square label {
+                border-radius: 0 6px 6px 0;
+                border-color: #41cac0;
+            }
+            .line-h-34{
+                line-height: 34px;
+            }
+        </style>
+  </head>
+  <body>
+
+  <section id="container" >
+     
+
+<!--header start-->
+<header class="header">
+    <div class="sidebar-toggle-box">
+        <div data-original-title="切换导航" data-placement="right" class="icon-bon-paragraph-justify tooltips font24" id="mobileMenu"></div>
+    </div>
+    <!--logo start-->
+    	<a class="logo"><span class="icon-bon-logo font36"></span></a>
+    <!--logo end-->
+
+    <style>
+        .new-pro {
+            background-color: #04cce5;
+            transform: skew(-20deg);
+            height: 90px;
+            width: 300px;
+            margin: -25px 0 0 44px;
+            padding: 10px 5px;
+            box-sizing: border-box;
+            box-shadow: 0 0 1px 3px rgba(0,0,0,.2) inset;
+            cursor: pointer;
+        }
+
+        .new-pro-text{
+            transform: skew(20deg);
+        }
+        .npt-line{
+            border-right: 2px solid #fff;
+            height: 70px;
+        }
+    </style>
+
+    <div class="top-nav ">
+        <!--message info-->
+        <ul class="nav pull-left top-menu notify-row">
+           <!-- <#include 'include/systemMsg.ftl'> -->
+        </ul>
+        <!--search & user info start-->
+
+ 
+        <ul class="nav pull-right top-menu">
+            <!-- user login dropdown start-->
+        	
+
+<li class="dropdown" >
+    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+        <i class="icon-user"></i>
+        <span class="username">Lisa Li</span>
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu extended logout">
+        <div class="log-arrow-up"></div>
+        <li><a href="loginServlet?action=loginOut"><i class="icon-key"></i>退出</a></li>
+    </ul>
+</li>
+            <!-- user login dropdown end -->
+        </ul>
+        
+
+
+<div class="btn-group pull-right">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="icon-tint cfff"></i>
+        <span class="hidden-phone cfff pd-l-5 font16">
+        
+			
+				
+          			望湘园(正大店)
+   				
+ 			
+				
+ 			
+				
+ 			
+ 		
+        </span>
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" >
+    	
+	        
+	            <li>
+	                <a href="/restaurant/promotionServlet?action=toCreate&id=1">
+	                <i class="icon-blank"></i>
+	                望湘园(正大店)
+	                </a>
+	            </li>
+	        
+	            <li>
+	                <a href="/restaurant/promotionServlet?action=toCreate&id=2">
+	                <i class="icon-blank"></i>
+	                57度湘
+	                </a>
+	            </li>
+	        
+	            <li>
+	                <a href="/restaurant/promotionServlet?action=toCreate&id=4">
+	                <i class="icon-blank"></i>
+	                上上谦
+	                </a>
+	            </li>
+	        
+        
+    </ul>
+</div> 
+
+<script type="text/javascript">
+/**
+ * 获取地址栏的参数
+ */
+function UrlSearch() {
+   var name,value; 
+   var str = location.href; //取得整个地址栏
+   var num = str.indexOf("?"); // 得到"?"所在的位置
+   str = str.substr(num + 1); // 取得所有参数   stringvar.substr(start [, length ]
+
+   var arr = str.split("&"); //通过"&"分割各个参数放到数组里
+   for(var i = 0;i < arr.length; i++){ 
+	    num = arr[i].indexOf("="); // 得到"="所在位置
+	    if(num > 0){ 
+		     name = arr[i].substring(0,num); // 参数名,从开始到"="的所在位置,不包含"=
+		     value = arr[i].substr(num + 1); // 参数值,从"="的所在位置到最后,不包含"="
+		     this[name] = value;
+	    } 
+    } 
+} 
+var path = window.location.pathname;
+var Request = new UrlSearch(); //实例化
+var id = Request.id;
+var url = path + "?action=info&id=" + id;
+</script>
+
+        <!--search & user info end-->
+    </div>
+</header>
+<!--header end-->
+<!--sidebar start-->
+<aside>
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+       
+
+<ul class="sidebar-menu" id="nav-accordion">
+      <!-- 首页 -->
+      <li>
+      
+          <a   href="indexServlet?id=1">
+              <i class="icon-bon-home font34"></i>
+              <span>首页</span>
+          </a>
+      </li>
+      
+      <!-- 餐厅管理 -->
+      <li class="sub-menu">
+           <a href="javascript:(0);"  >
+               <i class="icon-bon-venue font34"></i>
+               <span>餐厅管理</span>
+           </a>
+           <ul class="sub">
+                <li  ><a  href="restaurantServlet?action=info&id=1">餐厅详情</a></li>
+                <li  ><a  href="reviewServlet?action=info&id=1">餐厅评论</a></li>
+           </ul>
+       </li>
+       <!-- 促销 -->
+       <li>
+            <a class="active"  href="promotionServlet?action=info&id=1">
+                <i class="icon-bon-promo font34"></i>
+                <span>优惠促销</span>
+            </a>
+       </li>
+       <!-- 
+       <li class="sub-menu">
+            <a  href="indexServlet?id=1"  >
+                <i class="icon-bon-engagement font34"></i>
+                <span>精准营销</span>
+            </a>
+       </li>
+        -->
+       <!-- 设置 -->
+       <li class="sub-menu">
+             <a href="javascript:(0);"  >
+                 <i class="icon-bon-settings font34"></i>
+                 <span>设置</span>
+             </a>
+             <ul class="sub">
+                <li class="active" >
+               		 <a href="loginServlet?action=toUpdate&id=1">我的账号</a>
+                </li>
+             </ul>
+         </li>
+    
+</ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->
+
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12 clearfix">
+                    <p class="font30 pull-left">促销 - 创建一个促销活动</p>
+                <!--<#include 'include/restaurantlist.ftl'>-->
+                </div>
+            </div>
+              <div class="row">
+                  <div class="col-lg-12">
+                    <section class="panel">
+                        <div class="panel-body">
+                               <div class="form-group">
+                               <label class="font16 font-bold">促销类型</label>
+                               
+                               <select id="type" name="type" data-placeholder="选择优惠促销类型..." class="chosen-select-promotionType form-control m-bot15 "  >
+							        <option value="" >请选择优惠促销类型</option>
+							        <option value="1" >优惠促销</option>
+							        <option value="2" >欢乐时光</option>
+							        <option value="3" >女士之夜</option>
+							        <option value="4" >开怀畅饮</option>
+							        <option value="5" >特别活动</option>
+							        <option value="6" >精选套餐</option>
+		                       </select>   
+                               
+                          </div>
+                          <input type="hidden"  id="restaurantId" value="1" />
+                                <div class="form-group">
+                                    <label class="font16 font-bold">促销名称</label>
+                                    <input type="input" name='promotionName' class="form-control" id="promotionName" placeholder='请输入最具吸引力的标题，如“48元三道菜商务午餐”' />
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="font16 font-bold">促销开始时间 </label>
+                                    <input size="16" type="text"   id="startDate" readonly="" class="form-control" placeholder="选择时间" size="16">
+                                </div>
+                                <div class="form-group">
+                                    <label class="font16 font-bold">促销结束时间 </label>
+                                    <input size="16" type="text"   id="endDate"  readonly="" class="form-control" placeholder="选择时间" size="16">
+                                </div>
+
+
+                               <div class="form-group">
+								<label class="font16 font-bold">促销内容</label>
+								<textarea class="form-control"  onkeyup="calNum()"  style="height:150px;resize:none" name="content" id="content"   rows=4 maxlength="1000"></textarea>
+						    	<p class="text-right mg-t-10 mg-b-10">最多可输入1000个字，当前输入字数:<label id="numLabel">0</label></p>
+                               </div>
+                               
+                               <div class="form-group" >
+                               	<label class="font16 font-bold">状态</label>
+                               	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               	<input type="checkbox"  data-toggle="switch" />
+                             </div>
+                             <button type="button"  id="submitButton"  class="btn btn-success">保存</button>
+                             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                             <a href="promotionServlet?action=info&id=1">取消</a>
+                               
+                       </div>
+               
+                   </section>
+                </div>
+            </div>
+
+        </section>
+    </section>
+    <!--main content end-->
+    <!--footer start-->
+
+<footer class="site-footer">
+    <div class="text-center">
+    Copyright © 2006-2026 上海尚学堂 All Rights Reserved 电话：021-67690939 QQ：3401997271
+        <a href="#" class="go-top">
+            <i class="icon-bon-arrow-up"></i>
+        </a>
+    </div>
+</footer>
+    <!--footer end-->
+</section>
+
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="statics/js/jquery-1.8.3.min.js"></script>
+<script src="statics/js/bootstrap.min.js"></script>
+<script src="statics/js/jquery.scrollTo.min.js"></script>
+
+<!--美化滚动条<script src="statics/js/jquery.nicescroll.js?v=123456" type="text/javascript"></script>-->
+<!--<script src="statics/js/jquery.sparkline.js?v=123456" type="text/javascript"></script>-->
+<!--<script src="statics/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js?v=123456"></script>-->
+<script src="statics/js/owl.carousel.js" ></script>
+<script src="statics/js/jquery.customSelect.min.js" ></script>
+
+<script type="text/javascript" src="statics/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="statics/assets/fancybox/source/jquery.fancybox.js"></script>
+<script src="statics/js/respond.min.js" ></script>
+<script src="statics/js/modernizr.custom.js"></script>
+<script src="statics/js/toucheffects.js"></script>
+
+<!--common script for all pages-->
+<script src="statics/js/common-scripts.js"></script>
+
+<!--script for this page-->
+<!--<script src="statics/js/easy-pie-chart.js"></script>-->
+<script src="statics/js/cookie.util.js"></script>
+<script src="statics/js/util.js"></script>
+<script src="statics/js/ajax.submit.js"></script>
+<script src="statics/js/toastr.js"></script>
+<script src="statics/js/bootstrap-paginator.js"></script>
+<script src="statics/js/page.js"></script>
+<script src="statics/js/bootstrap-confirm.js"></script>
+
+<!--
+<footer class="site-footer">
+    <div class="text-center">
+    Copyright © 2006-2026 上海尚学堂 All Rights Reserved 电话：021-67690939 QQ：3401997271
+        <a href="#" class="go-top">
+            <i class="icon-bon-arrow-up"></i>
+        </a>
+    </div>
+</footer> -->
+
+<script type="text/javascript" src="statics/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="statics/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="statics/assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script type="text/javascript" src="statics/js/restaurant/bootstrap-switch-promotion-advance.js"></script>
+<script src="statics/chosen/chosen.jquery.js" type="text/javascript"></script>
+<script src="statics/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="statics/js/restaurant/promotion.js"></script>
+
+
+<script>
+$(function(){
+	// 初始化下拉框选择器
+	initSelector();
+	
+	// 时间选择器初始化
+	$("#startDate").datepicker({
+	        format: "yyyy-mm-dd",
+	        autoclose: true
+    });
+    $("#endDate").datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true
+    });
+    
+    // checkbox按钮初始化
+    $('select.styled').customSelect();
+    $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
+
+});
+
+/**
+ * 初始化下拉框选择器
+ * @returns
+ */
+function initSelector() {
+	var config = {
+	      '.chosen-select-promotionType'           : {max_selected_options: 2}, // 优惠促销类型
+	      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+	}
+	for (var selector in config) {
+	    $(selector).chosen(config[selector]);
+	}
+}
+
+var isActiveStatus = 0; // 默认是关闭状态
+
+function dealOn(){
+	isActiveStatus = 1;
+    return true;
+}
+
+function dealOff(id,_this){
+	isActiveStatus = 0;
+    return true;
+}
+
+
+
+</script>
+
+  </body>
+</html>

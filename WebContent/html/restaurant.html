@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+      <link rel="stylesheet" href="statics/chosen/docsupport/style.css">
+      <link rel="stylesheet" href="statics/chosen/docsupport/prism.css">
+      <link rel="stylesheet" href="statics/chosen/chosen.css">
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="keyword" content="">
+<!-- <link rel="shortcut icon" href="statics/img/favicon.png"> -->
+
+
+<!-- Bootstrap core CSS -->
+<link href="statics/css/bootstrap.min.3.css" rel="stylesheet">
+<link href="statics/css/bootstrap-reset.css" rel="stylesheet">
+<!--external css-->
+<!--<link href="/assets/font-awesomestatics/css/font-awesome.css" rel="stylesheet" />-->
+<link href="statics/assets/font-customer/style.css" rel="stylesheet" />
+
+<link href="statics/css/toastr.css" rel="stylesheet"/>
+
+<!-- Custom styles for this template -->
+<link href="statics/css/style.css" rel="stylesheet">
+<link href="statics/css/style-responsive.css" rel="stylesheet" />
+
+
+
+
+
+
+    <title>餐厅详情</title>
+    <style type="text/css" media="all">
+        /* fix rtl for demo */
+       .chosen-rtl .chosen-drop { left: -9000px; }
+    </style>
+  </head>
+
+  <body>
+
+
+<!--header start-->
+<header class="header">
+    <div class="sidebar-toggle-box">
+        <div data-original-title="切换导航" data-placement="right" class="icon-bon-paragraph-justify tooltips font24" id="mobileMenu"></div>
+    </div>
+    <!--logo start-->
+    	<a class="logo"><span class="icon-bon-logo font36"></span></a>
+    <!--logo end-->
+
+    <style>
+        .new-pro {
+            background-color: #04cce5;
+            transform: skew(-20deg);
+            height: 90px;
+            width: 300px;
+            margin: -25px 0 0 44px;
+            padding: 10px 5px;
+            box-sizing: border-box;
+            box-shadow: 0 0 1px 3px rgba(0,0,0,.2) inset;
+            cursor: pointer;
+        }
+
+        .new-pro-text{
+            transform: skew(20deg);
+        }
+        .npt-line{
+            border-right: 2px solid #fff;
+            height: 70px;
+        }
+    </style>
+
+    <div class="top-nav ">
+        <!--message info-->
+        <ul class="nav pull-left top-menu notify-row">
+           <!-- <#include 'include/systemMsg.ftl'> -->
+        </ul>
+        <!--search & user info start-->
+
+ 
+        <ul class="nav pull-right top-menu">
+            <!-- user login dropdown start-->
+        	
+
+<li class="dropdown" >
+    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+        <i class="icon-user"></i>
+        <span class="username">Lisa Li</span>
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu extended logout">
+        <div class="log-arrow-up"></div>
+        <li><a href="loginServlet?action=loginOut"><i class="icon-key"></i>退出</a></li>
+    </ul>
+</li>
+            <!-- user login dropdown end -->
+        </ul>
+        
+
+
+<div class="btn-group pull-right">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="icon-tint cfff"></i>
+        <span class="hidden-phone cfff pd-l-5 font16">
+        
+			
+				
+          			望湘园(正大店)
+   				
+ 			
+				
+ 			
+				
+ 			
+ 		
+        </span>
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" >
+    	
+	        
+	            <li>
+	                <a href="/restaurant/restaurantServlet?action=info&id=1">
+	                <i class="icon-blank"></i>
+	                望湘园(正大店)
+	                </a>
+	            </li>
+	        
+	            <li>
+	                <a href="/restaurant/restaurantServlet?action=info&id=2">
+	                <i class="icon-blank"></i>
+	                57度湘
+	                </a>
+	            </li>
+	        
+	            <li>
+	                <a href="/restaurant/restaurantServlet?action=info&id=4">
+	                <i class="icon-blank"></i>
+	                上上谦
+	                </a>
+	            </li>
+	        
+        
+    </ul>
+</div> 
+
+<script type="text/javascript">
+/**
+ * 获取地址栏的参数
+ */
+function UrlSearch() {
+   var name,value; 
+   var str = location.href; //取得整个地址栏
+   var num = str.indexOf("?"); // 得到"?"所在的位置
+   str = str.substr(num + 1); // 取得所有参数   stringvar.substr(start [, length ]
+
+   var arr = str.split("&"); //通过"&"分割各个参数放到数组里
+   for(var i = 0;i < arr.length; i++){ 
+	    num = arr[i].indexOf("="); // 得到"="所在位置
+	    if(num > 0){ 
+		     name = arr[i].substring(0,num); // 参数名,从开始到"="的所在位置,不包含"=
+		     value = arr[i].substr(num + 1); // 参数值,从"="的所在位置到最后,不包含"="
+		     this[name] = value;
+	    } 
+    } 
+} 
+var path = window.location.pathname;
+var Request = new UrlSearch(); //实例化
+var id = Request.id;
+var url = path + "?action=info&id=" + id;
+</script>
+
+        <!--search & user info end-->
+    </div>
+</header>
+<!--header end-->
+<!--sidebar start-->
+<aside>
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+       
+
+<ul class="sidebar-menu" id="nav-accordion">
+      <!-- 首页 -->
+      <li>
+      
+          <a   href="indexServlet?id=1">
+              <i class="icon-bon-home font34"></i>
+              <span>首页</span>
+          </a>
+      </li>
+      
+      <!-- 餐厅管理 -->
+      <li class="sub-menu">
+           <a href="javascript:(0);" class="active" >
+               <i class="icon-bon-venue font34"></i>
+               <span>餐厅管理</span>
+           </a>
+           <ul class="sub">
+                <li class="active" ><a  href="restaurantServlet?action=info&id=1">餐厅详情</a></li>
+                <li  ><a  href="reviewServlet?action=info&id=1">餐厅评论</a></li>
+           </ul>
+       </li>
+       <!-- 促销 -->
+       <li>
+            <a   href="promotionServlet?action=info&id=1">
+                <i class="icon-bon-promo font34"></i>
+                <span>优惠促销</span>
+            </a>
+       </li>
+       <!-- 
+       <li class="sub-menu">
+            <a  href="indexServlet?id=1"  >
+                <i class="icon-bon-engagement font34"></i>
+                <span>精准营销</span>
+            </a>
+       </li>
+        -->
+       <!-- 设置 -->
+       <li class="sub-menu">
+             <a href="javascript:(0);"  >
+                 <i class="icon-bon-settings font34"></i>
+                 <span>设置</span>
+             </a>
+             <ul class="sub">
+                <li class="active" >
+               		 <a href="loginServlet?action=toUpdate&id=1">我的账号</a>
+                </li>
+             </ul>
+         </li>
+    
+</ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->
+
+
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+             <div class="row">
+                <div class="col-lg-12 clearfix">
+                 <!-- <#include 'include/restaurantlist.ftl'>-->
+                </div>
+              </div>
+              <!-- page start-->
+
+              <div class="row">
+                  <div class="col-lg-6">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              	基本信息
+                          </header>
+                          <div class="panel-body"> 
+                              <input type="hidden" id="restaurantId" value="1" />
+                              <input type="hidden" id="resultCode" value="200" />
+                              <input type="hidden" id="resultMessage" value="" />
+                              <div class="form-group">
+                                  <label for="">名称</label>
+                                  <input type="text" class="form-control" id="restaurantName" placeholder="餐厅名称"  maxlength="50" 
+                                  value="望湘园(正大店)">
+                              </div>
+                                 
+                              <div class="form-group mylocation" >
+                                  <label for="">地址</label>
+                                  <input type="text" class="form-control" id="address" placeholder="餐厅地址"  maxlength="100"  
+                                  value="上海市浦东新区正大广场2层">
+                              </div>
+                              <div class="form-group">
+                                      <label for="">菜系</label>
+                                      <select data-placeholder="选择菜系..." class="chosen-select-cuisine form-control m-bot15 "  >
+                                            
+											    
+											        <option value="湘菜" selected >湘菜</option>
+		                                            <option value="川菜"  >川菜</option>
+		                                            <option value="本帮菜"  >本帮菜</option>
+		                                            <option value="徽菜"  >徽菜</option>
+											    
+											    
+											
+                                      </select>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="">人均价格</label>
+                                  <select data-placeholder="选择人均价格..." class="chosen-select-avgPrice form-control m-bot15 "  >
+                                      
+										    
+										        <option value="¥" selected >0 ~ ¥100</option>
+	                                            <option value="¥¥"  >¥100 ~ ¥200</option>
+	                                            <option value="¥¥¥"  >¥200 ~ ¥300</option>
+	                                            <option value="¥¥¥¥"  >¥300以上</option>
+										    
+										    
+										
+                                  </select>
+                              </div>
+                                  <div class="form-group">
+                                      <label for="">电话</label>
+                                      <input type="tel" class="form-control" id="telephone" placeholder="" maxlength="20" value="021-45678994">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">网站</label>
+                                      <input type="text" class="form-control" id="website" placeholder="" maxlength="80" value="www.shsxt.com">
+                                  </div>
+                              <div class="form-group">
+                                  <label for="" class="block" >便利设施</label>
+                                  
+									    
+									    	<input type="checkbox" id="isHasWiFi" checked>&nbsp;&nbsp;WiFi
+									    
+									    
+								  
+								  
+									    
+									    	<input type="checkbox" id="isHasSeat" checked>&nbsp;&nbsp;室外有座
+									    
+									    
+								  
+                              </div>
+                              
+                              <button id="submitBtn" type="button" class="btn btn-success" >保存</button>
+                      </section>
+                  </div>
+                  
+                   <div class="col-lg-6" id="mapmap">
+                      <section class="panel">
+                          <header class="panel-heading">
+                           		地图
+                          </header>
+                          <div class="panel-body">
+                             <div class="bg-ccc" id="mapdiv" style="height:300px;"></div>
+                          <p class="text-center pd-t-10 pd-b-10">如果标注不正确，请直接拖动修改</p>
+						</div>
+                      </section>
+
+                  </div>
+                  
+              </div>
+
+              <!-- page end-->
+          </section>
+      </section>
+      <!--main content end-->
+      <!--footer start-->
+      <footer class="site-footer">
+          <div class="text-center">
+               
+<footer class="site-footer">
+    <div class="text-center">
+    Copyright © 2006-2026 上海尚学堂 All Rights Reserved 电话：021-67690939 QQ：3401997271
+        <a href="#" class="go-top">
+            <i class="icon-bon-arrow-up"></i>
+        </a>
+    </div>
+</footer>
+              <a href="#" class="go-top">
+                  <i class="icon-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+      <!--footer end-->
+  </section>
+
+   <!-- js placed at the end of the document so the pages load faster -->
+  
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="statics/js/jquery-1.8.3.min.js"></script>
+<script src="statics/js/bootstrap.min.js"></script>
+<script src="statics/js/jquery.scrollTo.min.js"></script>
+
+<!--美化滚动条<script src="statics/js/jquery.nicescroll.js?v=123456" type="text/javascript"></script>-->
+<!--<script src="statics/js/jquery.sparkline.js?v=123456" type="text/javascript"></script>-->
+<!--<script src="statics/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js?v=123456"></script>-->
+<script src="statics/js/owl.carousel.js" ></script>
+<script src="statics/js/jquery.customSelect.min.js" ></script>
+
+<script type="text/javascript" src="statics/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="statics/assets/fancybox/source/jquery.fancybox.js"></script>
+<script src="statics/js/respond.min.js" ></script>
+<script src="statics/js/modernizr.custom.js"></script>
+<script src="statics/js/toucheffects.js"></script>
+
+<!--common script for all pages-->
+<script src="statics/js/common-scripts.js"></script>
+
+<!--script for this page-->
+<!--<script src="statics/js/easy-pie-chart.js"></script>-->
+<script src="statics/js/cookie.util.js"></script>
+<script src="statics/js/util.js"></script>
+<script src="statics/js/ajax.submit.js"></script>
+<script src="statics/js/toastr.js"></script>
+<script src="statics/js/bootstrap-paginator.js"></script>
+<script src="statics/js/page.js"></script>
+<script src="statics/js/bootstrap-confirm.js"></script>
+
+<!--
+<footer class="site-footer">
+    <div class="text-center">
+    Copyright © 2006-2026 上海尚学堂 All Rights Reserved 电话：021-67690939 QQ：3401997271
+        <a href="#" class="go-top">
+            <i class="icon-bon-arrow-up"></i>
+        </a>
+    </div>
+</footer> -->
+
+  <script src="statics/chosen/chosen.jquery.js" type="text/javascript"></script>
+  <script src="statics/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+  <script language="javascript" src="http://webapi.amap.com/maps?v=1.3&key=a7aabd2ca9d45e881ed2a9fc45b52680"></script>
+  <script language="javascript" src="statics/js/amap.js"></script>
+  <script src="statics/js/restaurant/restaurant.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script type="text/javascript">
+  var longitude = 121.2418457;
+  var latitude = 31.0191499;
+  // 得到当前位置坐标
+  if(navigator.geolocation) {
+	    navigator.geolocation.getCurrentPosition(
+	        function (position) {  
+	            longitude = position.coords.longitude;  
+	            latitude = position.coords.latitude;  
+	            console.log(longitude)
+	            console.log(latitude)
+	            },
+	            function (e) {
+	             var msg = e.code;
+	             var dd = e.message;
+	             console.log(msg)
+	             console.log(dd)
+	        }
+	      ) 
+	}
+  
+  // 初始化地图
+  var map = mapInit("mapdiv");
+  // 地图撒点
+  addmarker(latitude, longitude, null, map);
+  map.setFitView();
+  
+
+
+  
+  </script>
+  
+  </body>
+</html>
